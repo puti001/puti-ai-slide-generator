@@ -34,7 +34,7 @@
 
 ### 5. 🎵 全域循環背景音樂 (BGM)
 * **全片無縫循環**：支援在 `script.txt` 腳本最上方以 `[bgm: 檔案名稱.mp3]` 全域宣告背景音樂，Remotion 在渲染時會全域加載並開啟 `loop` 循環播放，長度不足會自動重播。
-* **專業音量平衡**：可透過 `volume` 自訂背景音樂音量（推薦設定 `0.18`，即 18% 音量），確保全片背景音樂和諧點綴，且人聲對白 100% 清晰可辨，絕不反客為主。
+* **專業音量平衡**：可透過 `volume` 自訂背景音樂音量（推薦設定 `0.1`，即 10% 音量），確保全片背景音樂和諧點綴，且人聲對白 100% 清晰可辨，絕不反客為主。
 
 ### 6. ⏳ 抗封鎖隨機抖動延遲 (Jitter Delay)
 * 為了防止微軟 TTS 伺服器對頻繁發起的 WebSocket 連線進行 Rate Limit 阻擋，每次請求成功後自動加入 `3.0~4.5 秒的隨機抖動延遲`（模擬人類操作），並設有 5 次最大重試與 8.0 秒間隔的自動退避機制，極度穩定。
@@ -69,7 +69,7 @@ python puti_generator.py "麥積山"
 ```text
 [voice: 小螺, voice_name: zh-TW-YunJheNeural]
 [voice: 菩菩, voice_name: zh-TW-HsiaoChenNeural]
-[bgm: 空明心海.mp3, volume: 0.18]
+[bgm: 空明心海.mp3, volume: 0.1]
 
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]
@@ -79,7 +79,7 @@ python puti_generator.py "麥積山"
 ```
 
 * `voice`：定義自訂角色配音。`voice` 為角色名字，`voice_name` 為微軟 Edge-TTS 的語音代碼（如台灣男聲 `zh-TW-YunJheNeural`、女聲 `zh-TW-HsiaoChenNeural` / `zh-TW-HsiaoYuNeural` 等）。
-* `bgm`：定義全域循環背景音樂。`bgm` 指向放置於該專案資料夾下的音訊檔案（如 `空明心海.mp3`），`volume` 則自訂播放音量，預設且推薦值為 `0.18`（18% 音量）。
+* `bgm`：定義全域循環背景音樂。`bgm` 指向放置於該專案資料夾下的音訊檔案（如 `空明心海.mp3`），`volume` 則自訂播放音量，預設且推薦值為 `0.1`（10% 音量）。
 * `animation` / `pan`：背景圖片的 Pan & Zoom 動態。
 * `transition`：頁面轉場方式（可選 `morph`, `zoom`, `fade`, `wipe` 等）。
 * `object`：獨立的大字或標題物件，可指定坐標 (`x`, `y`)、進入動畫（`typewriter` 等）。

@@ -129,7 +129,7 @@ def parse_script(script_path):
     
     slides = []
     custom_voices = {}
-    bgm_config = {"file": None, "volume": 0.18} # 預設背景音樂音量 18%
+    bgm_config = {"file": None, "volume": 0.1} # 預設背景音樂音量 10%
     
     # 1. 將全域配置與投影片主體分割 (以第一個 '#' 字元為分界)
     first_sharp_idx = content.find("#")

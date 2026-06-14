@@ -527,7 +527,7 @@ export const SlideVideo: React.FC<SlideVideoProps> = ({ settings, slides }) => {
       {settings.bgm && (
         <Audio
           src={staticFile(settings.bgm)}
-          volume={settings.bgmVolume !== undefined ? settings.bgmVolume : 0.18}
+          volume={settings.bgmVolume !== undefined ? settings.bgmVolume : 0.1}
           loop
         />
       )}
