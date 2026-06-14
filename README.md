@@ -60,9 +60,12 @@ python puti_generator.py "麥積山"
 
 ## 📝 腳本配置 (script.txt) 說明
 
-每個簡報以 `# [圖片檔名]` 分隔，格式如下：
+每個簡報可以在最開頭（第一張投影片前）宣告角色使用的聲音代碼，格式如下：
 
 ```text
+[voice: 小螺, voice_name: zh-TW-YunJheNeural]
+[voice: 菩菩, voice_name: zh-TW-HsiaoChenNeural]
+
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]
 [transition: zoom]
@@ -70,10 +73,11 @@ python puti_generator.py "麥積山"
 小螺：「啊，睡了千把年，一睜眼怎麼外面這麼吵啊？」菩菩：「小螺，小聲點。咱們這可是麥積山石窟呢。」
 ```
 
+* `voice`：定義自訂角色配音。`voice` 為角色名字，`voice_name` 為微軟 Edge-TTS 的語音代碼（如台灣男聲 `zh-TW-YunJheNeural`、女聲 `zh-TW-HsiaoChenNeural` / `zh-TW-HsiaoYuNeural` 等）。
 * `animation` / `pan`：背景圖片的 Pan & Zoom 動態。
 * `transition`：頁面轉場方式（可選 `morph`, `zoom`, `fade`, `wipe` 等）。
 * `object`：獨立的大字或標題物件，可指定坐標 (`x`, `y`)、進入動畫（`typewriter` 等）。
-* `對白`：只要包含 `名字：「台詞」` 的格式，配音時會自動過濾人名，並為該角色朗讀對白。
+* `對白`：只要包含 `名字：「台詞」` 的格式，配音時會自動過濾人名，並為該角色朗讀對白。如果沒有使用 `[voice]` 宣告，系統會根據名字中的關鍵字智能匹配聲音。
 
 ---
 

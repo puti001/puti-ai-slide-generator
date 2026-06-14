@@ -1,3 +1,6 @@
+[voice: 小螺, voice_name: zh-TW-YunJheNeural]
+[voice: 菩菩, voice_name: zh-TW-HsiaoChenNeural]
+
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]
 [transition: zoom]

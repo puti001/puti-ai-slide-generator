@@ -129,6 +129,7 @@ def parse_script(script_path):
     
     blocks = re.split(r'^#\s*', content, flags=re.MULTILINE)
     slides = []
+    custom_voices = {}
     
     for block in blocks:
         if not block.strip():
@@ -147,6 +148,14 @@ def parse_script(script_path):
         for line in lines[1:]:
             line_str = line.strip()
             if not line_str:
+                continue
+            
+            # 解析自訂角色聲音宣告 [voice: 角色名字, voice_name: 聲音代碼]
+            voice_match = re.match(r'\[voice:\s*([^\s,\]]+),\s*voice_name:\s*([^\s,\]]+)\]', line_str)
+            if voice_match:
+                char_name = voice_match.group(1).strip()
+                voice_name = voice_match.group(2).strip()
+                custom_voices[char_name] = voice_name
                 continue
             
             anim_match = re.match(r'\[animation:\s*([a-zA-Z\-]+),\s*pan:\s*([a-zA-Z\-]+)\]', line_str)
@@ -198,7 +207,7 @@ def parse_script(script_path):
             "subtitle": subtitle
         })
         
-    return slides
+    return slides, custom_voices
  
 async def main():
     if not check_ffprobe():
@@ -223,7 +232,8 @@ async def main():
     os.makedirs(public_dir, exist_ok=True)
     
     print(f"步驟 1: 解析 {script_file} 腳本...")
-    slides = parse_script(script_file)
+    slides, custom_voices = parse_script(script_file)
+    CHARACTER_VOICES.update(custom_voices)
     
     print("步驟 2: 處理資源（複製本地圖片與配音）...")
     for i, slide in enumerate(slides):
