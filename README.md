@@ -10,6 +10,7 @@
 * **多語音指派 (Voice Mapping)**：自動識別腳本中的對話格式（如 `小螺：「對白」` 和 `菩菩：「對白」`）。小螺自動指派為活潑男聲（`zh-TW-YunJheNeural`），菩菩指派為優雅女聲（`zh-TW-HsiaoChenNeural`），旁白預設使用溫柔女聲。
 * **人名與引號過濾**：TTS 語音生成時會**自動過濾掉角色名稱與冒號引號**，僅由對應的角色聲音念出台詞。
 * **字幕電影感呈現**：底部字幕去除角色前綴，僅以引號表示對白內容，畫面簡潔乾淨。
+* **對話字幕逐句卡點 (行數防擠壓)**：自動依據多角色對話中每一句對白的精確音軌時長，計算出字幕時間軸，在 Remotion 中依據語音進度動態切換顯示當前說話者的台詞，並為每句對白套用獨立的打字機進場效果。這避免了兩個人講話擠在同一頁疊成多行（甚至三行）的違和感，畫面如電影字幕般清爽、循序漸進。
 * **無損音軌拼接**：分段生成臨時語音後，透過 FFmpeg 重新編碼無損拼接，讓簡報每一頁的時長與對白時間 100% 精確緊湊對齊。
 
 ### 2. 🛡️ 物理定位與動畫分離防抖 (Margin-Based)
@@ -70,6 +71,7 @@ python puti_generator.py "麥積山"
 [voice: 小螺, voice_name: zh-TW-YunJheNeural]
 [voice: 菩菩, voice_name: zh-TW-HsiaoChenNeural]
 [bgm: 空明心海.mp3, volume: 0.1]
+[aspect-ratio: portrait]
 
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]
@@ -80,6 +82,7 @@ python puti_generator.py "麥積山"
 
 * `voice`：定義自訂角色配音。`voice` 為角色名字，`voice_name` 為微軟 Edge-TTS 的語音代碼（如台灣男聲 `zh-TW-YunJheNeural`、女聲 `zh-TW-HsiaoChenNeural` / `zh-TW-HsiaoYuNeural` 等）。
 * `bgm`：定義全域循環背景音樂。`bgm` 指向放置於該專案資料夾下的音訊檔案（如 `空明心海.mp3`），`volume` 則自訂播放音量，預設且推薦值為 `0.1`（10% 音量）。
+* `aspect-ratio`：定義影片構圖比例。`portrait` 代表手機觀看的 9:16 直式影片（720x1280）；預設或為 `landscape` 則代表 16:9 橫式影片（1280x720）。
 * `animation` / `pan`：背景圖片的 Pan & Zoom 動態。
 * `transition`：頁面轉場方式（可選 `morph`, `zoom`, `fade`, `wipe` 等）。
 * `object`：獨立的大字或標題物件，可指定坐標 (`x`, `y`)、進入動畫（`typewriter` 等）。

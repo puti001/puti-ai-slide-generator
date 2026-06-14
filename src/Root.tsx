@@ -25,6 +25,12 @@ export interface ObjectData {
   motion?: 'float' | 'pulse' | 'none';
 }
 
+export interface SubtitleItem {
+  text: string;
+  start: number;
+  end: number;
+}
+
 export interface SlideData {
   image: string;
   durationInSeconds: number;
@@ -32,6 +38,7 @@ export interface SlideData {
   transition?: SlideTransition;
   objects?: ObjectData[];
   subtitle?: string;
+  subtitles?: SubtitleItem[];
   audio?: string;
 }
 

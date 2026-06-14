@@ -1,6 +1,7 @@
 [voice: 小螺, voice_name: zh-TW-YunJheNeural]
 [voice: 菩菩, voice_name: zh-TW-HsiaoChenNeural]
 [bgm: 空明心海.mp3, volume: 0.1]
+[aspect-ratio: portrait]
 
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]

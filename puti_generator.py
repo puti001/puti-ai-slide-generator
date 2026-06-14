@@ -130,6 +130,7 @@ def parse_script(script_path):
     slides = []
     custom_voices = {}
     bgm_config = {"file": None, "volume": 0.1} # 預設背景音樂音量 10%
+    aspect_ratio = "landscape"
     
     # 1. 將全域配置與投影片主體分割 (以第一個 '#' 字元為分界)
     first_sharp_idx = content.find("#")
@@ -151,6 +152,12 @@ def parse_script(script_path):
         if bgm_match:
             bgm_config["file"] = bgm_match.group(1).strip()
             bgm_config["volume"] = float(bgm_match.group(2).strip())
+            continue
+        
+        # 解析比例宣告 [aspect-ratio: portrait/landscape]
+        ratio_match = re.match(r'\[aspect-ratio:\s*([^\s\]]+)\]', line_str)
+        if ratio_match:
+            aspect_ratio = ratio_match.group(1).strip()
             continue
         
         # 解析自訂角色聲音宣告 [voice: 角色名字, voice_name: 聲音代碼]
@@ -233,7 +240,7 @@ def parse_script(script_path):
                 "subtitle": subtitle
             })
             
-    return slides, custom_voices, bgm_config
+    return slides, custom_voices, bgm_config, aspect_ratio
  
 async def main():
     if not check_ffprobe():
@@ -258,8 +265,13 @@ async def main():
     os.makedirs(public_dir, exist_ok=True)
     
     print(f"步驟 1: 解析 {script_file} 腳本...")
-    slides, custom_voices, bgm_config = parse_script(script_file)
+    slides, custom_voices, bgm_config, aspect_ratio = parse_script(script_file)
     CHARACTER_VOICES.update(custom_voices)
+    
+    # 根據 aspect_ratio 設定寬高
+    width = 720 if aspect_ratio == "portrait" else 1280
+    height = 1280 if aspect_ratio == "portrait" else 720
+    print(f"  -> 設定影片比例為：{aspect_ratio} ({width}x{height})")
     
     # 複製自訂 BGM 背景音樂
     bgm_filename = None
@@ -298,10 +310,12 @@ async def main():
         # 匹配：角色：「對白」
         dialogues = re.findall(r"([^：「」\s]+)：「([^」]+)」", text)
         
+        slide_subtitles = []
         if dialogues:
             # 對話型投影片：分句合成再拼接
             temp_files = []
             cleaned_subtitles = []
+            current_time = 0.0
             for idx, (char, content) in enumerate(dialogues):
                 voice = get_voice_for_char(char)
                 temp_filename = f"temp_slide_{i+1}_{idx}.mp3"
@@ -309,6 +323,16 @@ async def main():
                 
                 print(f"  -> 生成 [對話] {char} (使用 {voice}): '{content[:12]}...'")
                 await generate_tts(content, voice, temp_path)
+                
+                # 獲取單句對白時長
+                frag_duration = get_audio_duration(temp_path)
+                slide_subtitles.append({
+                    "text": f"「{content}」",
+                    "start": current_time,
+                    "end": current_time + frag_duration
+                })
+                current_time += frag_duration
+                
                 temp_files.append(temp_path)
                 cleaned_subtitles.append(f"「{content}」")
             
@@ -330,15 +354,28 @@ async def main():
             voice = "zh-TW-HsiaoChenNeural"
             print(f"  -> 生成 [旁白] (使用 {voice}): '{text[:15]}...'")
             await generate_tts(text, voice, audio_path)
+            
+            frag_duration = get_audio_duration(audio_path)
+            slide_subtitles.append({
+                "text": text,
+                "start": 0.0,
+                "end": frag_duration
+            })
         
         duration = get_audio_duration(audio_path)
-        slide["durationInSeconds"] = duration + 0.4
+        slide_duration = duration + 0.4
+        slide["durationInSeconds"] = slide_duration
         slide["audio"] = audio_filename
+        
+        # 修正最後一句字幕的結束時間為此投影片的總長度，防止提早消失
+        if slide_subtitles:
+            slide_subtitles[-1]["end"] = slide_duration
+        slide["subtitles"] = slide_subtitles
         
     input_data = {
       "settings": {
-        "width": 1280,
-        "height": 720,
+        "width": width,
+        "height": height,
         "fps": 30,
         "bgm": bgm_filename,
         "bgmVolume": bgm_config["volume"]

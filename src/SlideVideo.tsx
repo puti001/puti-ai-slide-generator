@@ -285,21 +285,55 @@ const Slide: React.FC<{
     }
   }
 
-  const rawSubtitle = slide.subtitle || '';
-  const typingDuration = Math.min(Math.round(fps * 2.0), durationInFrames - transitionDurationFrames - 10);
-  const visibleCharCount = Math.round(
-    interpolate(frame, [0, typingDuration], [0, rawSubtitle.length], {
+  // 決定要渲染的字幕內容與對應的 opacity
+  let displayedText = '';
+  let textOpacity = 1;
+
+  if (slide.subtitles && slide.subtitles.length > 0) {
+    const currentSecond = frame / fps;
+    const activeItem = slide.subtitles.find(
+      (item) => currentSecond >= item.start && currentSecond < item.end
+    ) || slide.subtitles[slide.subtitles.length - 1];
+
+    if (activeItem) {
+      const itemStartFrame = Math.round(activeItem.start * fps);
+      const relativeFrame = frame - itemStartFrame;
+      const itemDurationFrames = Math.round((activeItem.end - activeItem.start) * fps);
+
+      const typingDuration = Math.min(Math.round(fps * 1.0), Math.max(5, itemDurationFrames - 5));
+      const visibleCharCount = Math.round(
+        interpolate(relativeFrame, [0, typingDuration], [0, activeItem.text.length], {
+          extrapolateLeft: 'clamp',
+          extrapolateRight: 'clamp',
+        })
+      );
+      displayedText = activeItem.text.slice(0, visibleCharCount);
+
+      const outroStartFrame = itemDurationFrames - Math.round(fps * 0.4);
+      if (relativeFrame >= outroStartFrame) {
+        textOpacity = interpolate(relativeFrame, [outroStartFrame, itemDurationFrames], [1, 0], {
+          extrapolateLeft: 'clamp',
+          extrapolateRight: 'clamp',
+        });
+      }
+    }
+  } else {
+    const rawSubtitle = slide.subtitle || '';
+    const typingDuration = Math.min(Math.round(fps * 2.0), durationInFrames - transitionDurationFrames - 10);
+    const visibleCharCount = Math.round(
+      interpolate(frame, [0, typingDuration], [0, rawSubtitle.length], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      })
+    );
+    displayedText = rawSubtitle.slice(0, visibleCharCount);
+
+    const textOutroStart = durationInFrames - Math.round(fps * 0.5);
+    textOpacity = interpolate(frame, [textOutroStart, durationInFrames], [1, 0], {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
-    })
-  );
-  const displayedText = rawSubtitle.slice(0, visibleCharCount);
-
-  const textOutroStart = durationInFrames - Math.round(fps * 0.5);
-  const textOpacity = interpolate(frame, [textOutroStart, durationInFrames], [1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+    });
+  }
 
   const isMorphedWithNext = (objId: string) => {
     if (!nextSlide || nextSlide.transition?.type !== 'morph') return false;
