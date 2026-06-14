@@ -1,0 +1,67 @@
+# 1_maijishan_panorama.png
+[animation: zoom-in, pan: right-to-left]
+[transition: zoom]
+[object: main-title, type: text, content: "麥積山石窟：佛系神仙的日常", x: 50, y: 35, size: 54, color: "#ffffff", entrance: typewriter]
+[object: main-sub, type: text, content: "凌空棧道與泥塑風華", x: 50, y: 55, size: 28, color: "#ffcc00", entrance: fade-in]
+小螺：「啊，睡了千把年，一睜眼怎麼外面這麼吵啊？」菩菩：「小螺，小聲點。咱們這可是名震天下的東方雕塑陳列館——麥積山石窟呢。」
+
+# 2_first_meeting.png
+[animation: pan-only, pan: top-to-bottom]
+[transition: morph]
+[object: section-title, type: text, content: "初次見面", x: 18, y: 10, size: 36, color: "#ffcc00", entrance: pop-in]
+小螺：「哎呀，身上這泥巴都有點乾裂了。菩菩，妳看我頭上這螺髻，沒歪吧？」菩菩：「沒歪，還是那麼調皮。不過我這寶冠倒是有點落灰了。」
+
+# 3_viewing_wheat_stack.png
+[animation: zoom-out, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "遠眺麥垛山", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「快看山下！平原上堆了那麼多金黃色的麥垛，怎麼跟我們家山峰長得一模一樣啊？」菩菩：「傻孩子，所以這裡才叫麥積山呀。古人就是看整座山像農家堆積的麥垛，才起這個名字的。」
+
+# 4_thrilling_path.png
+[animation: pan-only, pan: down-to-up]
+[transition: morph]
+[object: section-title, type: text, content: "凌空心跳棧道", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「媽呀！這紅色棧道也太高了吧！我這泥塑的小心臟快要跳出來了！」菩菩：「站穩點！這可是凌空棧道。古時候工匠們全憑雙手在懸崖上鑿孔插木造出來的，這才叫神蹟呢。」
+
+# 5_clay_macro_texture.png
+[animation: zoom-in, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "泥土的溫度", x: 18, y: 10, size: 36, color: "#ffcc00"]
+菩菩：「別慌。你看我們，泥巴裡混了麥草、毛髮 and 千年時光，紮實得很呢。」小螺：「對喔！雖然不是冷冰冰的石頭，但這乾爽的泥土溫度，反而讓人覺得更溫暖呢。」
+
+# 6_divine_smile.png
+[animation: pan-only, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "神秘而治癒的微笑", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「菩菩，妳看外面那些遊客一直拿相機對著我。我是不是該擺出我最招牌的治癒微笑？」菩菩：「你呀，這神秘的微笑，早就寫在我們北魏泥塑的基因裡了。」
+
+# 7_thousand_buddhas.png
+[animation: zoom-out, pan: top-to-bottom]
+[transition: morph]
+[object: section-title, type: text, content: "千佛石窟崖面", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「壓低聲音，妳看隔壁那尊小佛，摀著嘴在偷笑什麼呢？」菩菩：「大概是剛才聽到了哪個遊客在講八卦吧。這千佛洞裡，天天都有好玩的事。」
+
+# 8_silk_road_illusion.png
+[animation: pan-only, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "絲路光影幻象", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「噓！妳聽，是不是有駝鈴聲？是古代絲綢之路的駱駝商隊耶！」菩菩：「是啊，以前我們這裡可是絲路要道。南來北往的旅人都會來這點盞燈，祈求一路平安。」
+
+# 9_light_of_guardian.png
+[animation: zoom-in, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "光之千古守護", x: 18, y: 10, size: 36, color: "#ffcc00"]
+菩菩：「其實，能在這座山裡安守一千五百年，看著一代代人來了又走，就是最偉大的守護。」小螺：「嗯，願世人都能像我們一樣，心無罣礙，笑看風雨。」
+
+# 10_restoration_moment.png
+[animation: pan-only, pan: down-to-up]
+[transition: morph]
+[object: section-title, type: text, content: "拂去歲月塵埃", x: 18, y: 10, size: 36, color: "#ffcc00"]
+小螺：「喔喔舒服！這羊毛刷刷得我好癢啊。修復師姐姐，左邊一點，對對對！」菩菩：「多虧了這些現代修復師，用最溫柔的雙手，幫我們把消逝的時間一點點找回來。」
+
+# 11_museum_whisper.png
+[animation: zoom-out, pan: right-to-left]
+[transition: zoom]
+[object: end-title, type: text, content: "佛陀紀念館特展", x: 50, y: 35, size: 48, color: "#ffffff", entrance: typewriter]
+[object: end-sub, type: text, content: "再現千年風華", x: 50, y: 55, size: 28, color: "#ffcc00", entrance: fade-in]
+小螺：「聽說我們這次出差到台灣佛陀紀念館的展櫃裡了，這裡的冷氣吹得好爽啊。」菩菩：「傻瓜，不管身在哪個櫥窗，只要我們的彩繪和微笑還在，就是千年的風華再現。」

@@ -1,0 +1,14 @@
+node_modules/
+public/audio_*.mp3
+public/temp_*.mp3
+public/temp_slide_*.mp3
+public/*_*.png
+public/*_*.jpg
+public/*_*.jpeg
+input.json
+*.mp4
+*/*.mp4
+.system_generated/
+.gemini/
+test_ssml.mp3
+test_maijishan_8.mp3

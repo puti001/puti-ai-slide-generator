@@ -1,0 +1,21 @@
+# https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1280&q=80
+[animation: zoom-in, pan: right-to-left]
+[transition: morph]
+[object: main-title, type: text, content: "Puti-AI 簡報生成器", x: 50, y: 35, size: 64, color: "#ffffff", entrance: pop-in]
+[object: sub-title, type: text, content: "最強簡報影片自動化神器", x: 50, y: 55, size: 32, color: "#ffcc00", entrance: fade-in]
+歡迎來到 Puti-AI 自動簡報影片生成器！這是一個非常強大的影片製作工具。
+
+# https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1280&q=80
+[animation: zoom-out, pan: down-to-up]
+[transition: morph]
+[object: main-title, type: text, content: "Puti-AI 簡報生成器", x: 18, y: 10, size: 32, color: "#ffffff"]
+[object: feature-box, type: text, content: "★ 支援自然配音 與 Morph 轉場", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-left, motion: float]
+我們會為你自動加上流暢的 PPT 動畫、轉場，以及極度自然的 TTS 語音配音。
+
+# https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1280&q=80
+[animation: pan-only, pan: left-to-right]
+[transition: wipe]
+[object: main-title, type: text, content: "Puti-AI 簡報生成器", x: 18, y: 10, size: 32, color: "#ffffff"]
+[object: feature-box, type: text, content: "★ 支援自然配音 與 Morph 轉場", x: 50, y: 35, size: 36, color: "#ffcc00"]
+[object: cta-text, type: text, content: "現在就開始你的創作，體驗自動化簡報吧！", x: 50, y: 60, size: 40, color: "#ffffff", entrance: pop-in]
+現在就開始你的創作，體驗自動化影片製作的便利吧！

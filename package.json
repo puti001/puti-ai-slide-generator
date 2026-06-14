@@ -1,0 +1,21 @@
+{
+  "name": "ppt-slide-video-generator",
+  "version": "1.0.0",
+  "description": "PPT-like Slides Video Generator using Remotion",
+  "main": "src/index.tsx",
+  "scripts": {
+    "dev": "remotion preview src/index.tsx",
+    "render": "remotion render SlideVideo out.mp4 --props=input.json"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.140"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.140",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}

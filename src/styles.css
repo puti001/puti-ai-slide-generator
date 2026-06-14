@@ -1,0 +1,176 @@
+/* 基礎樣式定義 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #0d0d11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 投影片容器 */
+.slide-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 照片元件 */
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+}
+
+/* 遮罩，讓下半部比較暗，好突出字幕 */
+.slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+/* 字幕卡片 - 全透明底 */
+.subtitle-card {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 90%;
+  max-width: 1000px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.subtitle-text {
+  font-size: 34px; /* 精緻縮小，不阻擋畫面 */
+  font-weight: 900;
+  font-family: 'DFKai-SB', 'BiauKai', '標楷體', 'KaiTi', serif; /* 字幕專用標楷體 */
+  color: #ffffff;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  /* 電影級向量描邊 */
+  -webkit-text-stroke: 3.5px #000000;
+  paint-order: stroke fill;
+  text-shadow: 
+    -1.5px -1.5px 0 #000,  
+     1.5px -1.5px 0 #000,
+    -1.5px  1.5px 0 #000,
+     1.5px  1.5px 0 #000,
+     0px 4px 10px rgba(0, 0, 0, 0.85);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* 獨立物件基礎樣式 - 採 Margin-Based 物理定位與 CSS 獨立動畫分離 */
+.slide-object {
+  position: absolute;
+  width: 1000px; /* 固定寬度，防打字機排版抖動 */
+  height: 160px; /* 固定高度，保證垂直定位 */
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  z-index: 10;
+  white-space: nowrap;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 900;
+  /* 電影級向量描邊 */
+  -webkit-text-stroke: 3.5px #000000;
+  paint-order: stroke fill;
+  text-shadow: 
+    -1.5px -1.5px 0 #000,  
+     1.5px -1.5px 0 #000,
+    -1.5px  1.5px 0 #000,
+     1.5px  1.5px 0 #000,
+     0px 4px 10px rgba(0, 0, 0, 0.85);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* 強調動畫 CSS Keyframes (與物理定位 left, top 徹底解耦，防移位至左上角) */
+@keyframes puti-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes puti-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes puti-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes puti-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes puti-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.anim-pulse {
+  animation: puti-pulse 2s infinite ease-in-out;
+}
+
+.anim-float {
+  animation: puti-float 3s infinite ease-in-out;
+}
+
+.anim-spin {
+  animation: puti-spin 6s infinite linear;
+}
+
+.anim-wiggle {
+  animation: puti-wiggle 0.5s infinite ease-in-out;
+}
+
+.anim-flash {
+  animation: puti-flash 1.5s infinite ease-in-out;
+}

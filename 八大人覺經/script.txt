@@ -1,0 +1,76 @@
+# Slide_01.png
+[animation: zoom-in, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "佛說八大人覺經", x: 50, y: 35, size: 64, color: "#ffffff", entrance: pop-in]
+[object: sub-title, type: text, content: "大乘菩薩修行的八大覺悟", x: 50, y: 55, size: 32, color: "#ffcc00", entrance: fade-in]
+歡迎收看佛說八大人覺經導讀。這部經典是大乘菩薩修行者覺悟世間真理、成就解脫智慧的八大指南。
+
+# Slide_02.png
+[animation: zoom-out, pan: down-to-up]
+[transition: morph]
+[object: section-title, type: text, content: "第一覺悟", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-1, type: text, content: "世間無常 國土危脆", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-left, motion: float]
+第一覺悟：世間無常，國土危脆；四大苦空，五陰無我。這啟示我們世間一切皆在生滅變異中，切勿執著虛妄的色身。
+
+# Slide_03.png
+[animation: pan-only, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "第二覺知", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-2, type: text, content: "多欲為苦 生死疲勞", x: 50, y: 48, size: 40, color: "#ffffff", entrance: pop-in]
+第二覺知：多欲為苦。生死疲勞，皆從貪欲而起；若能少欲無為，則能使身心獲得真正的自在與解脫。
+
+# Slide_04.png
+[animation: zoom-in, pan: top-to-bottom]
+[transition: morph]
+[object: section-title, type: text, content: "第三覺知", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-3, type: text, content: "心無厭足 唯得多求", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-right]
+第三覺知：心無厭足，唯得多求，增長罪惡。菩薩常念知足，安貧守道，唯以修持智慧為人生的根本事業。
+
+# Slide_05.png
+[animation: zoom-out, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "第四覺知", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-4, type: text, content: "懈怠墮落 常行精進", x: 50, y: 48, size: 40, color: "#ffffff", entrance: pop-in, motion: float]
+第四覺知：懈怠墮落。修行者應常行精進，破除煩惱惡魔，摧伏四魔的考驗，才能順利走出三界陰境的牢獄。
+
+# Slide_06.png
+[animation: pan-only, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "第五覺悟", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-5, type: text, content: "愚癡生死 廣學多聞", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-left]
+第五覺悟：愚癡生死。菩薩常念廣學多聞，以增長智慧、成就雄辯口才，進而教化一切眾生，帶給大眾究竟的安樂。
+
+# Slide_07.png
+[animation: zoom-in, pan: down-to-up]
+[transition: morph]
+[object: section-title, type: text, content: "第六覺知", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-6, type: text, content: "貧苦多怨 橫結惡緣", x: 50, y: 48, size: 40, color: "#ffffff", entrance: pop-in]
+第六覺知：貧苦多怨，橫結惡緣。菩薩修持布施時，應平等對待怨親，不懷恨舊惡，更不憎恨一切作惡之人。
+
+# Slide_08.png
+[animation: zoom-out, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "第七覺悟", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-7, type: text, content: "五欲過患 梵行高遠", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-right, motion: float]
+第七覺悟：五欲過患。雖身處世俗，但不染著世間玩樂，常念出家梵行，守道清白，以慈悲心對待一切有情眾生。
+
+# Slide_09.png
+[animation: pan-only, pan: left-to-right]
+[transition: morph]
+[object: section-title, type: text, content: "第八覺知", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-8, type: text, content: "生死熾然 發大乘心", x: 50, y: 48, size: 40, color: "#ffffff", entrance: pop-in]
+第八覺知：生死熾然，苦惱無量。發大乘心，普濟一切眾生，願代眾生受無量苦，令諸眾生畢竟獲得究竟大樂。
+
+# Slide_10.png
+[animation: zoom-in, pan: right-to-left]
+[transition: morph]
+[object: section-title, type: text, content: "菩薩行願", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: body-text-9, type: text, content: "精進行道 乘法身船", x: 50, y: 48, size: 40, color: "#ffffff", entrance: fly-in-left]
+如此八事，乃是諸佛菩薩大人的覺悟。精進行道，慈悲修慧，乘著法身船，渡過生死苦海，直達涅槃彼岸。
+
+# Slide_11.png
+[animation: zoom-out, pan: down-to-up]
+[transition: wipe]
+[object: section-title, type: text, content: "願以此功德 普及於一切", x: 50, y: 35, size: 48, color: "#ffffff", entrance: pop-in]
+[object: sub-title-end, type: text, content: "我等與眾生 共證無上道", x: 50, y: 55, size: 32, color: "#ffcc00", entrance: fade-in]
+願以此導讀功德，迴向法界一切有情眾生，同發菩提心，共證無上道。感謝您的觀看，阿彌陀佛。
