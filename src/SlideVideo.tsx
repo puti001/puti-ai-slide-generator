@@ -524,6 +524,13 @@ export const SlideVideo: React.FC<SlideVideoProps> = ({ settings, slides }) => {
 
   return (
     <div className="video-container">
+      {settings.bgm && (
+        <Audio
+          src={staticFile(settings.bgm)}
+          volume={settings.bgmVolume !== undefined ? settings.bgmVolume : 0.18}
+          loop
+        />
+      )}
       {slideSequences.map((seq, index) => (
         <Sequence
           key={index}

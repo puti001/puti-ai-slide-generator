@@ -40,6 +40,8 @@ export interface SlideVideoProps {
     width: number;
     height: number;
     fps: number;
+    bgm?: string;
+    bgmVolume?: number;
   };
   slides: SlideData[];
 }

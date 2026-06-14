@@ -2,6 +2,7 @@ node_modules/
 public/audio_*.mp3
 public/temp_*.mp3
 public/temp_slide_*.mp3
+public/bgm_*.mp3
 public/*_*.png
 public/*_*.jpg
 public/*_*.jpeg

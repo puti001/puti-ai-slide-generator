@@ -127,87 +127,113 @@ def parse_script(script_path):
     with open(script_path, "r", encoding="utf-8") as f:
         content = f.read()
     
-    blocks = re.split(r'^#\s*', content, flags=re.MULTILINE)
     slides = []
     custom_voices = {}
+    bgm_config = {"file": None, "volume": 0.18} # 預設背景音樂音量 18%
     
-    for block in blocks:
-        if not block.strip():
+    # 1. 將全域配置與投影片主體分割 (以第一個 '#' 字元為分界)
+    first_sharp_idx = content.find("#")
+    if first_sharp_idx != -1:
+        global_part = content[:first_sharp_idx]
+        slides_part = content[first_sharp_idx:]
+    else:
+        global_part = content
+        slides_part = ""
+        
+    # 2. 解析全域配置
+    for line in global_part.split('\n'):
+        line_str = line.strip()
+        if not line_str:
+            continue
+            
+        # 解析背景音樂宣告 [bgm: 音樂檔案, volume: 播放音量]
+        bgm_match = re.match(r'\[bgm:\s*([^\s,\]]+),\s*volume:\s*([^\s,\]]+)\]', line_str)
+        if bgm_match:
+            bgm_config["file"] = bgm_match.group(1).strip()
+            bgm_config["volume"] = float(bgm_match.group(2).strip())
             continue
         
-        lines = block.strip().split('\n')
-        image_name = lines[0].strip()
-        
-        animation_type = "none"
-        pan_direction = "none"
-        transition_type = "fade"
-        subtitle = ""
-        objects = []
-        
-        script_text_lines = []
-        for line in lines[1:]:
-            line_str = line.strip()
-            if not line_str:
+        # 解析自訂角色聲音宣告 [voice: 角色名字, voice_name: 聲音代碼]
+        voice_match = re.match(r'\[voice:\s*([^\s,\]]+),\s*voice_name:\s*([^\s,\]]+)\]', line_str)
+        if voice_match:
+            char_name = voice_match.group(1).strip()
+            voice_name = voice_match.group(2).strip()
+            custom_voices[char_name] = voice_name
+            continue
+            
+    # 3. 解析每張投影片
+    if slides_part:
+        # 移除第一個 '#' 之後，依據行首 '#' 切分每個區塊
+        blocks = re.split(r'^#\s*', slides_part, flags=re.MULTILINE)
+        for block in blocks:
+            if not block.strip():
                 continue
             
-            # 解析自訂角色聲音宣告 [voice: 角色名字, voice_name: 聲音代碼]
-            voice_match = re.match(r'\[voice:\s*([^\s,\]]+),\s*voice_name:\s*([^\s,\]]+)\]', line_str)
-            if voice_match:
-                char_name = voice_match.group(1).strip()
-                voice_name = voice_match.group(2).strip()
-                custom_voices[char_name] = voice_name
-                continue
+            lines = block.strip().split('\n')
+            image_name = lines[0].strip()
             
-            anim_match = re.match(r'\[animation:\s*([a-zA-Z\-]+),\s*pan:\s*([a-zA-Z\-]+)\]', line_str)
-            if anim_match:
-                animation_type = anim_match.group(1)
-                pan_direction = anim_match.group(2)
-                continue
-                
-            trans_match = re.match(r'\[transition:\s*([a-zA-Z\-]+)\]', line_str)
-            if trans_match:
-                transition_type = trans_match.group(1)
-                continue
- 
-            obj_match = re.match(r'\[object:\s*([a-zA-Z0-9\-]+),\s*(.*)\]', line_str)
-            if obj_match:
-                obj_id = obj_match.group(1)
-                attrs_str = obj_match.group(2)
-                attrs = {}
-                for attr_m in re.finditer(r'\s*([a-zA-Z0-9\-]+)\s*:\s*(?:"([^"]*)"|([^\s,]+))', attrs_str):
-                    key = attr_m.group(1)
-                    val = attr_m.group(2) if attr_m.group(2) is not None else attr_m.group(3)
-                    try:
-                        if '.' in val:
-                            val = float(val)
-                        else:
-                            val = int(val)
-                    except ValueError:
-                        pass
-                    attrs[key] = val
-                
-                attrs["id"] = obj_id
-                objects.append(attrs)
-                continue
-                
-            script_text_lines.append(line_str)
+            animation_type = "none"
+            pan_direction = "none"
+            transition_type = "fade"
+            subtitle = ""
+            objects = []
             
-        subtitle = " ".join(script_text_lines)
-        
-        slides.append({
-            "image": image_name,
-            "animation": {
-                "type": animation_type,
-                "pan": pan_direction
-            },
-            "transition": {
-                "type": transition_type
-            },
-            "objects": objects,
-            "subtitle": subtitle
-        })
-        
-    return slides, custom_voices
+            script_text_lines = []
+            for line in lines[1:]:
+                line_str = line.strip()
+                if not line_str:
+                    continue
+                
+                anim_match = re.match(r'\[animation:\s*([a-zA-Z\-]+),\s*pan:\s*([a-zA-Z\-]+)\]', line_str)
+                if anim_match:
+                    animation_type = anim_match.group(1)
+                    pan_direction = anim_match.group(2)
+                    continue
+                    
+                trans_match = re.match(r'\[transition:\s*([a-zA-Z\-]+)\]', line_str)
+                if trans_match:
+                    transition_type = trans_match.group(1)
+                    continue
+     
+                obj_match = re.match(r'\[object:\s*([a-zA-Z0-9\-]+),\s*(.*)\]', line_str)
+                if obj_match:
+                    obj_id = obj_match.group(1)
+                    attrs_str = obj_match.group(2)
+                    attrs = {}
+                    for attr_m in re.finditer(r'\s*([a-zA-Z0-9\-]+)\s*:\s*(?:"([^"]*)"|([^\s,]+))', attrs_str):
+                        key = attr_m.group(1)
+                        val = attr_m.group(2) if attr_m.group(2) is not None else attr_m.group(3)
+                        try:
+                            if '.' in val:
+                                val = float(val)
+                            else:
+                                val = int(val)
+                        except ValueError:
+                            pass
+                        attrs[key] = val
+                    
+                    attrs["id"] = obj_id
+                    objects.append(attrs)
+                    continue
+                    
+                script_text_lines.append(line_str)
+                
+            subtitle = " ".join(script_text_lines)
+            
+            slides.append({
+                "image": image_name,
+                "animation": {
+                    "type": animation_type,
+                    "pan": pan_direction
+                },
+                "transition": {
+                    "type": transition_type
+                },
+                "objects": objects,
+                "subtitle": subtitle
+            })
+            
+    return slides, custom_voices, bgm_config
  
 async def main():
     if not check_ffprobe():
@@ -232,9 +258,21 @@ async def main():
     os.makedirs(public_dir, exist_ok=True)
     
     print(f"步驟 1: 解析 {script_file} 腳本...")
-    slides, custom_voices = parse_script(script_file)
+    slides, custom_voices, bgm_config = parse_script(script_file)
     CHARACTER_VOICES.update(custom_voices)
     
+    # 複製自訂 BGM 背景音樂
+    bgm_filename = None
+    if bgm_config["file"]:
+        bgm_local_path = os.path.join(target_dir_abs, bgm_config["file"])
+        if os.path.exists(bgm_local_path):
+            bgm_filename = f"bgm_{target_dir_name}_{bgm_config['file']}"
+            dest_bgm_path = os.path.join(public_dir, bgm_filename)
+            shutil.copy2(bgm_local_path, dest_bgm_path)
+            print(f"  -> 已成功載入並複製背景音樂：{bgm_config['file']}")
+        else:
+            print(f"  警告：找不到背景音樂檔案 {bgm_local_path}")
+            
     print("步驟 2: 處理資源（複製本地圖片與配音）...")
     for i, slide in enumerate(slides):
         # 1. 處理投影片圖片
@@ -301,7 +339,9 @@ async def main():
       "settings": {
         "width": 1280,
         "height": 720,
-        "fps": 30
+        "fps": 30,
+        "bgm": bgm_filename,
+        "bgmVolume": bgm_config["volume"]
       },
       "slides": slides
     }
