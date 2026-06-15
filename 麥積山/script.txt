@@ -6,32 +6,38 @@
 # 1_maijishan_panorama.png
 [animation: zoom-in, pan: right-to-left]
 [transition: zoom]
-[object: main-title, type: text, content: "麥積山石窟：佛系神仙的日常", x: 50, y: 35, size: 54, color: "#ffffff", entrance: typewriter]
+[object: main-title, type: text, content: "麥積山石窟", x: 50, y: 35, size: 64, color: "#ffffff", entrance: typewriter]
 [object: main-sub, type: text, content: "凌空棧道與泥塑風華", x: 50, y: 55, size: 28, color: "#ffcc00", entrance: fade-in]
 小螺：「啊，睡了千把年，一睜眼怎麼外面這麼吵啊？」菩菩：「小螺，小聲點。咱們這可是名震天下的東方雕塑陳列館——麥積山石窟呢。」
 
 # 2_first_meeting.png
 [animation: pan-only, pan: top-to-bottom]
 [transition: morph]
-[object: section-title, type: text, content: "初次見面", x: 18, y: 10, size: 36, color: "#ffcc00", entrance: pop-in]
+[object: main-title, type: text, content: "麥積山石窟", x: 25, y: 10, size: 32, color: "#ffcc00"]
+[object: first-meet, type: text, content: "初次見面", x: 50, y: 45, size: 48, color: "#ffffff", entrance: pop-in]
 小螺：「哎呀，身上這泥巴都有點乾裂了。菩菩，妳看我頭上這螺髻，沒歪吧？」菩菩：「沒歪，還是那麼調皮。不過我這寶冠倒是有點落灰了。」
 
 # 3_viewing_wheat_stack.png
 [animation: zoom-out, pan: left-to-right]
 [transition: morph]
-[object: section-title, type: text, content: "遠眺麥垛山", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: main-title, type: text, content: "麥積山石窟", x: 25, y: 10, size: 32, color: "#ffcc00", motion: float]
+[object: big-word, type: text, content: "神似麥垛", x: 50, y: 48, size: 76, color: "#ffcc00", entrance: pop-in, motion: pulse]
 小螺：「快看山下！平原上堆了那麼多金黃色的麥垛，怎麼跟我們家山峰長得一模一樣啊？」菩菩：「傻孩子，所以這裡才叫麥積山呀。古人就是看整座山像農家堆積的麥垛，才起這個名字的。」
 
 # 4_thrilling_path.png
 [animation: pan-only, pan: down-to-up]
 [transition: morph]
-[object: section-title, type: text, content: "凌空心跳棧道", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: main-title, type: text, content: "麥積山石窟", x: 25, y: 10, size: 32, color: "#ffcc00", motion: float]
+[object: heart-beat, type: text, content: "凌空絕壁", x: 50, y: 48, size: 76, color: "#ff3333", entrance: pop-in, motion: pulse]
 小螺：「媽呀！這紅色棧道也太高了吧！我這泥塑的小心臟快要跳出來了！」菩菩：「站穩點！這可是凌空棧道。古時候工匠們全憑雙手在懸崖上鑿孔插木造出來的，這才叫神蹟呢。」
 
 # 5_clay_macro_texture.png
 [animation: zoom-in, pan: right-to-left]
 [transition: morph]
-[object: section-title, type: text, content: "泥土的溫度", x: 18, y: 10, size: 36, color: "#ffcc00"]
+[object: main-title, type: text, content: "麥積山石窟", x: 25, y: 10, size: 32, color: "#ffcc00", motion: float]
+[object: mat-1, type: text, content: "麥草", x: 30, y: 45, size: 36, color: "#ffffff", entrance: fly-in-left]
+[object: mat-2, type: text, content: "毛髮", x: 50, y: 45, size: 36, color: "#ffffff", entrance: pop-in]
+[object: mat-3, type: text, content: "千年時光", x: 70, y: 45, size: 36, color: "#ffcc00", entrance: fly-in-right, motion: float]
 菩菩：「別慌。你看我們，泥巴裡混了麥草、毛髮 and 千年時光，紮實得很呢。」小螺：「對喔！雖然不是冷冰冰的石頭，但這乾爽的泥土溫度，反而讓人覺得更溫暖呢。」
 
 # 6_divine_smile.png
