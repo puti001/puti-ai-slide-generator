@@ -41,11 +41,11 @@ def xml_escape(text):
 
 
 # 異步合成 TTS 語音 (含重試與防限流機制)
-async def generate_tts(text, voice, output_path):
+async def generate_tts(text, voice, output_path, rate="-15%"):
     max_retries = 5
     for attempt in range(max_retries):
         try:
-            communicate = edge_tts.Communicate(text, voice)
+            communicate = edge_tts.Communicate(text, voice, rate=rate)
             await communicate.save(output_path)
             # 成功生成後，延遲 3.0~4.5 秒的隨機抖動延遲，徹底防止微軟限流封鎖
             await asyncio.sleep(3.0 + random.random() * 1.5)
